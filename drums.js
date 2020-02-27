@@ -9,13 +9,14 @@ for (var i = 0; i< numDrumButtons; i++ ){
 
     var buttonInnerHTML = this.innerHTML;
     makeSound(buttonInnerHTML);
-
+    buttonAnimation(buttonInnerHTML);
     });
   }
 
 //Detecting Keyboard
 document.addEventListener("keypress", function(event){
   makeSound(event.key);
+  buttonAnimation(event.key);
 })
 
 //Playing sound based on click/keyboard
@@ -60,4 +61,16 @@ function makeSound(key) {
     default: console.log(buttonInnerHTML);
 
   }
+}
+
+
+function buttonAnimation(currentKey){
+
+  var activeButton = document.querySelector("."+currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 120);
+
 }
